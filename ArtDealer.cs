@@ -30,6 +30,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Runtime.Remoting.Messaging;
 using System.Security.Cryptography;
 using System.Text;
@@ -271,6 +272,8 @@ namespace DeckDrawHW1
 
             checkPattern(ranks, suits);
 
+
+            //Add asterics to the chosen cards and make the green border visible
             for (int i = 0; i < 4; i++)
             {
                 if (cardMatch[i]) //if the card has matched the current pattern
@@ -295,21 +298,21 @@ namespace DeckDrawHW1
             }
 
               // Open the file to read from
-              using (StreamWriter sw = File.AppendText(pathDealt))
-              {
+            using (StreamWriter sw = File.AppendText(pathDealt))
+            {
                 // Write Draw Data to file
                 sw.WriteLine(cards[0] + ','
                       + cards[1] + ','
                       + cards[2] + ','
                       + cards[3]);
-                  sw.Close();
-              }
+                sw.Close();
+            }
             
             //Updates history box with new selections
             updateHistoryBox();
-              //Replaces draw button with reset button
-              DrawButton.Visible = false;
-              ResetButton.Visible = true;
+            //Replaces draw button with reset button
+            DrawButton.Visible = false;
+            ResetButton.Visible = true;
             
         }
 
@@ -631,37 +634,42 @@ namespace DeckDrawHW1
         private void checkPattern(string[] ranks, string[] suits)
         {
             //This will need to pulled from pathWon later
-            int pattern = 0;
+            int pattern = 4;
 
             switch (pattern)
             {
                 case 0: //Check if the Suits are all red
                     patternAllRed(ranks, suits);
                     break;
-                case 1:
+                case 1: //All CLubs Pattern
+                    patternAllClubs(ranks, suits);
                     break;
-                case 2:
+                case 2: //All Face Cards Pattern
+                    patternFaceCards(ranks, suits);
                     break;
-                case 3:
+                case 3: //All cards 2 <-> 9
+                    patternSingleDigits(ranks, suits);
                     break;
-                case 4:
+                case 4: //Prime Numbers 2, 3, 5, 7
+                    patternAnyPrime(ranks, suits);
                     break;
-                case 5:
+                case 5: //Pick the highest rank cards
+                    patternHighestRank(ranks, suits);
                     break;
                 default:
+                    //Should set the pathWon file to 0 here to catch people trying to break the program
                     break;
             }
         }
 
-        //Purpose: checkts for the pattern if the user selected any heart or diamond
+        //Purpose: checks for the pattern if the user selected any heart or diamond
         //Passed: Passed arrays for the values of the ranks and suits of the selected cards
         //Author: Matthew Brown
         private void patternAllRed(string[] ranks, string[] suits)
         {
-            for(int i = 0; i < 4; i++)
+            for(int i = 0; i < 4; i++) //For all 4 cards
             {
-                Console.WriteLine(i + " " + suits[i]);
-                if (suits[i] == "D" || suits[i] == "H")
+                if (suits[i] == "D" || suits[i] == "H") //If the card is a heart or diamond
                 {
                     cardMatch[i] = true;
                 } else
@@ -672,7 +680,139 @@ namespace DeckDrawHW1
 
         }
 
+        //Purpose: checks for the pattern if the user selected any club
+        //Passed: Passed arrays for the values of the ranks and suits of the selected cards
+        //Author: Matthew Brown
+        private void patternAllClubs(string[] ranks, string[] suits)
+        {
+            for (int i = 0; i < 4; i++)  //For all 4 cards
+            {
+                if (suits[i] == "C") //If the cards is a club
+                {
+                    cardMatch[i] = true;
+                } else
+                {
+                    cardMatch[i] = false;
+                }
+            }
+        }
 
+        //Purpose: checks for the pattern if the user selected any face cards
+        //Passed: Passed arrays for the values of the ranks and suits of the selected cards
+        //Author: Matthew Brown
+        private void patternFaceCards(string[] ranks, string[] suits)
+        {
+            for (int i = 0; i < 4; i++) //For all 4 cards
+            {
+                if (ranks[i] == "J" || ranks[i] == "Q" || ranks[i] == "K") //If the card is a face card
+                {
+                    cardMatch[i] = true;
+                }
+                else
+                {
+                    cardMatch[i] = false;
+                }
+            }
+        }
+
+        //Purpose: checks for the pattern if the user selected any cards between 2 and 9
+        //Passed: Passed arrays for the values of the ranks and suits of the selected cards
+        //Author: Matthew Brown
+        private void patternSingleDigits(string[] ranks, string[] suits)
+        {
+            for (int i = 0; i < 4; i++) //For all 4 cards
+            {
+                try
+                {
+                    //https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/types/how-to-convert-a-string-to-a-number
+                    int test = Int32.Parse(ranks[i]); //Convert the string to a number so we can compare its values
+                    Console.WriteLine("Test is: " + test);
+                    if (test >= 2 && test <= 9) //If the number is single digit
+                    {
+                        cardMatch[i] = true;
+
+                    }
+                    else //Should just be for 10
+                    {
+                        cardMatch[i] = false;
+                    }
+                }
+                catch //Catching all the face cards here
+                {
+                    cardMatch[i] = false;
+                    Console.WriteLine("not a number");
+                }
+            }
+        }
+
+        //Purpose: checks for the pattern if the user selected any cards that are prime
+        //Passed: Passed arrays for the values of the ranks and suits of the selected cards
+        //Author: Matthew Brown
+        private void patternAnyPrime(string[] ranks, string[] suits)
+        {
+            for (int i = 0; i < 4; i++) //For all 4 cards
+            {
+                if (ranks[i] == "2" || ranks[i] == "3" || ranks[i] == "5" || ranks[i] == "7") //If the card is prime
+                {
+                    cardMatch[i] = true;
+                }
+                else
+                {
+                    cardMatch[i] = false;
+                }
+            }
+        }
+
+        //Purpose: This pattern selects all cards from the highest rank present (if it is KD KH JD JH it would select the two kings)
+        //Passed: Passed arrays for the values of the ranks and suits of the selected cards
+        //Author: Matthew Brown
+        private void patternHighestRank(string[] ranks, string[] suits)
+        {
+            int[] rankHolder = new int[4]; //Integer array to hold the converted ranks so we can compare their size
+            int currentMaxRank = 0; //Keep track of the highest rank card seen
+            for (int i = 0; i < 4; i++) //For all 4 cards
+            {
+                switch (ranks[i])
+                {
+                    case "J": //Jack
+                        rankHolder[i] = 11;
+                        break;
+                    case "Q": //Queen
+                        rankHolder[i] = 12;
+                        break;
+                    case "K": //King
+                        rankHolder[i] = 13;
+                        break;
+                    case "A": //Ace
+                        rankHolder[i] = 14;
+                        break;
+                    default:
+                        try
+                        {
+                            rankHolder[i] = Int32.Parse(ranks[i]); //THe rest are numbers convert them to ints
+                        }
+                        catch //We should never hit this input should be only numbers
+                        {
+                            rankHolder[i] = 2;
+                        }
+                        break;
+                }
+                if(currentMaxRank < rankHolder[i]) //If the rank we are looking at now is bigger than the previous card
+                {
+                    currentMaxRank = rankHolder[i];
+                }
+            }
+            for (int i = 0;i < 4;i++) //For all 4 cards
+            {
+                if (rankHolder[i] == currentMaxRank) //Pick all the cards that are the same as the highest rank seen
+                {
+                    cardMatch[i] = true;
+                } else
+                {
+                    cardMatch[i] = false;
+                }
+            }
+        }
 
     }
 }
