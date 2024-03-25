@@ -73,6 +73,9 @@ namespace DeckDrawHW1
         //Booleans that tell if cards have matched the current pattern in 
         bool[] cardMatch = new bool[4];
 
+        //Number denoting the current pattern we are on
+        int lastWon; 
+
         // Purpose: Initializes application (automatically made by .NET framework)
         public ArtDealer()
         {
@@ -102,7 +105,7 @@ namespace DeckDrawHW1
             MessageBox.Show(message,title);
 
 
-            // Create File if it does not exist Credit goes to matthew and win API
+            // Create File if it does not exist for card history Credit goes to matthew and win API
             if (!File.Exists(pathDealt))
             {
                 // Create a file to write to
@@ -114,6 +117,31 @@ namespace DeckDrawHW1
                 sw.WriteLine(date);
                 sw.Close();
             }
+
+            // Create File if it does not exist for last won number Credit goes to matthew and win API
+            if (!File.Exists(pathWon))
+            {
+                // Create a file to write to
+                StreamWriter sw = File.CreateText(pathWon);
+                sw.WriteLine(0);
+                sw.Close();
+            }
+            StreamReader sr = new StreamReader(pathWon);
+            lastWon = sr.Read();
+            sr.Close();
+            if(lastWon < 0 || lastWon > 5) //If someone edited the file trying to break the program
+            {
+                File.WriteAllText(pathWon, "");
+                using (StreamWriter sw = File.AppendText(pathWon))
+                {
+                    MessageBox.Show("Please do not edit LastWon.txt. Reseting to first pattern!", "Stop Cheating");
+                    sw.WriteLine(0);
+                    sw.Close();
+                }
+            }
+
+
+
 
             //Updates history box with previous sessions choices
             updateHistoryBox();
@@ -633,10 +661,7 @@ namespace DeckDrawHW1
         //Author: Matthew Brown
         private void checkPattern(string[] ranks, string[] suits)
         {
-            //This will need to pulled from pathWon later
-            int pattern = 4;
-
-            switch (pattern)
+            switch (lastWon) //this is pulled from LastWon.txt and is a integer between 0 and 5
             {
                 case 0: //Check if the Suits are all red
                     patternAllRed(ranks, suits);
@@ -657,7 +682,13 @@ namespace DeckDrawHW1
                     patternHighestRank(ranks, suits);
                     break;
                 default:
-                    //Should set the pathWon file to 0 here to catch people trying to break the program
+                    File.WriteAllText(pathWon, "");
+                    using (StreamWriter sw = File.AppendText(pathWon))
+                    {
+                        MessageBox.Show("Please do not edit LastWon.txt. Reseting to first pattern!", "Stop Cheating");
+                        sw.WriteLine(0);
+                        sw.Close();
+                    }
                     break;
             }
         }
