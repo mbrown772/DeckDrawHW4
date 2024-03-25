@@ -74,7 +74,10 @@ namespace DeckDrawHW1
         bool[] cardMatch = new bool[4];
 
         //Number denoting the current pattern we are on
-        int lastWon; 
+        int lastWon;
+
+        //Number of cards the art dealer has selected in this round
+        int cardsSelected = 0;
 
         // Purpose: Initializes application (automatically made by .NET framework)
         public ArtDealer()
@@ -122,26 +125,17 @@ namespace DeckDrawHW1
             if (!File.Exists(pathWon))
             {
                 // Create a file to write to
-                StreamWriter sw = File.CreateText(pathWon);
-                sw.WriteLine(0);
-                sw.Close();
+                //Credit: https://stackoverflow.com/questions/1225857/write-string-to-text-file-and-ensure-it-always-overwrites-the-existing-content
+                File.WriteAllText(pathWon, "0");
             }
             StreamReader sr = new StreamReader(pathWon);
-            lastWon = sr.Read();
+            lastWon = Int32.Parse(sr.ReadLine());
             sr.Close();
             if(lastWon < 0 || lastWon > 5) //If someone edited the file trying to break the program
             {
-                File.WriteAllText(pathWon, "");
-                using (StreamWriter sw = File.AppendText(pathWon))
-                {
-                    MessageBox.Show("Please do not edit LastWon.txt. Reseting to first pattern!", "Stop Cheating");
-                    sw.WriteLine(0);
-                    sw.Close();
-                }
+                MessageBox.Show("Please do not edit LastWon.txt. Reseting to first pattern!", "Stop Cheating");
+                File.WriteAllText(pathWon, "0");
             }
-
-
-
 
             //Updates history box with previous sessions choices
             updateHistoryBox();
@@ -167,8 +161,6 @@ namespace DeckDrawHW1
             {
                 cardMatch[i] = false;
             }
-
-
 
             //Clears card images
             clearCardImages();
@@ -322,10 +314,11 @@ namespace DeckDrawHW1
                             labelCard4.Visible = true;
                             break;
                     }
+                    cardsSelected++; //Increment the number of cards selected by the dealer
                 }
             }
 
-              // Open the file to read from
+            // Open the file to read from
             using (StreamWriter sw = File.AppendText(pathDealt))
             {
                 // Write Draw Data to file
@@ -335,12 +328,28 @@ namespace DeckDrawHW1
                       + cards[3]);
                 sw.Close();
             }
-            
             //Updates history box with new selections
             updateHistoryBox();
+
             //Replaces draw button with reset button
             DrawButton.Visible = false;
             ResetButton.Visible = true;
+
+            if(cardsSelected >= 4)
+            {
+                cardsSelected = 0;
+                lastWon++;
+                if (lastWon == 6)
+                {
+                    MessageBox.Show("Congratulation you have completed all the Patterns! You have climed the highest mountain relish your victory!", "Fin");
+                    lastWon = 5; //PLACEHOLDER TO NOT BREAK THE APP
+                } else
+                {
+                    MessageBox.Show("Congratulation you have completed this pattern! There is another secret pattern to crack!", "Pattern Solved");
+                }
+                //Credit: https://stackoverflow.com/questions/1225857/write-string-to-text-file-and-ensure-it-always-overwrites-the-existing-content
+                File.WriteAllText(pathWon, lastWon.ToString()); //Replace contents of the file with lastWon
+            }
             
         }
 
@@ -682,12 +691,10 @@ namespace DeckDrawHW1
                     patternHighestRank(ranks, suits);
                     break;
                 default:
-                    File.WriteAllText(pathWon, "");
                     using (StreamWriter sw = File.AppendText(pathWon))
                     {
                         MessageBox.Show("Please do not edit LastWon.txt. Reseting to first pattern!", "Stop Cheating");
-                        sw.WriteLine(0);
-                        sw.Close();
+                        File.WriteAllText(pathWon, "0");
                     }
                     break;
             }
