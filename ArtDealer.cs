@@ -1,5 +1,5 @@
 ﻿// This Program was developed using C# in Visual Studio 2022
-// Homework 3 Deck Draw Program
+// Homework 4 Deck Draw Program
 // Teammates are Nicholas/Brett/James/Jeremy/Matthew
 // 3/22/24 CS4500
 // This Program will allow user to select 4 cards, highlighting red cards and writing selections to a file
@@ -45,7 +45,9 @@ namespace DeckDrawHW1
         string title = "Deck Draw Program";
 
         // Get path to write data
-        string path = @"DrawData/CardsDealt.txt";
+        string pathDealt = @"DrawData/CardsDealt.txt";
+        string pathWon = @"DrawData/LastWon.txt";
+
 
         // Get date-only portion of date, without its time. From .net API
         string date = System.DateTime.Now.Date.ToString("d");
@@ -66,6 +68,9 @@ namespace DeckDrawHW1
 
         // generates a deck of cards
         List<(string, int)> deck = GenerateDeck();
+
+        //Booleans that tell if cards have matched the current pattern in 
+        bool[] cardMatch = new bool[4];
 
         // Purpose: Initializes application (automatically made by .NET framework)
         public ArtDealer()
@@ -97,13 +102,13 @@ namespace DeckDrawHW1
 
 
             // Create File if it does not exist Credit goes to matthew and win API
-            if (!File.Exists(path))
+            if (!File.Exists(pathDealt))
             {
                 // Create a file to write to
-                StreamWriter sw = File.CreateText(path);
+                StreamWriter sw = File.CreateText(pathDealt);
                 sw.Close();
             }
-            using (StreamWriter sw = File.AppendText(path))
+            using (StreamWriter sw = File.AppendText(pathDealt))
             {
                 sw.WriteLine(date);
                 sw.Close();
@@ -127,6 +132,14 @@ namespace DeckDrawHW1
             rankBoxCard4.Visible = false;
             suitBoxCard4.SelectedIndex = 0;
             suitBoxCard4.Visible = false;
+
+            //Initialize the cardsMatch bool array to false for all card
+            for(int i = 0; i < 3; i++)
+            {
+                cardMatch[i] = false;
+            }
+
+
 
             //Clears card images
             clearCardImages();
@@ -242,83 +255,58 @@ namespace DeckDrawHW1
         private void DrawButton_Click(object sender, EventArgs e)
         {
             
-              StopButton.Visible = true;
+            StopButton.Visible = true;
 
-              // Gets name of cards located at each user-selected draw index and prepares them for writing to file
-              string suit1 = shortName(deck[drawIndexes[0]].Item1.ToString());
-              string suit2 = shortName(deck[drawIndexes[1]].Item1.ToString());
-              string suit3 = shortName(deck[drawIndexes[2]].Item1.ToString());
-              string suit4 = shortName(deck[drawIndexes[3]].Item1.ToString());
+            string[] suits = new string[4]; //Suit of current cards selected
+            string[] ranks = new string[4]; //Rank of current cards selected
+            string[] cards = new string[4]; //Combined print object of rank and suit
 
-              string rank1 = actualRank(deck[drawIndexes[0]].Item2);
-              string rank2 = actualRank(deck[drawIndexes[1]].Item2);
-              string rank3 = actualRank(deck[drawIndexes[2]].Item2);
-              string rank4 = actualRank(deck[drawIndexes[3]].Item2);
+            for (int i = 0; i < 4; i++)
+            {
+                suits[i] = shortName(deck[drawIndexes[i]].Item1.ToString());
+                ranks[i] = actualRank(deck[drawIndexes[i]].Item2);
+                cards[i] = ranks[i] + suits[i];
 
-              string firstCard = "";
-              string secondCard = "";
-              string thirdCard = "";
-              string fourthCard = "";
+            }
 
-              for(int i = 3; i >= 0; i--)
-              {
-                //Secret pattern matching for red suits hearts and Diamonds. Put astrerisks around them in the history.
-                if (shortName(deck[drawIndexes[i]].Item1.ToString()) == "D" || shortName(deck[drawIndexes[i]].Item1.ToString()) == "H")
+            checkPattern(ranks, suits);
+
+            for (int i = 0; i < 4; i++)
+            {
+                if (cardMatch[i]) //if the card has matched the current pattern
                 {
-                    if (i == 0) {
-                        firstCard = '*' + rank1 + suit1 + '*';
-                        labelCard1.Visible = true;
-                    }
-                    else if(i == 1)
+                    cards[i] = "*" + cards[i] + "*";
+                    switch (i) //Make the green border for the current card visible
                     {
-                        secondCard = '*' + rank2 + suit2 + '*';
-                        labelCard2.Visible = true;
-                    }
-                    else if(i == 2)
-                    {
-                        thirdCard = '*' + rank3 + suit3 + '*';
-                        labelCard3.Visible = true;
-                    }
-                    else
-                    {
-                        fourthCard = '*' + rank4 + suit4 + '*';
-                        labelCard4.Visible = true;
-                    }
-                       
-                }
-                else
-                {
-                    if (i == 0)
-                    {
-                        firstCard = rank1 + suit1;
-                    }
-                    else if (i == 1)
-                    {
-                        secondCard = rank2 + suit2;
-                    }
-                    else if (i == 2)
-                    {
-                        thirdCard = rank3 + suit3;
-                    }
-                    else
-                    {
-                        fourthCard = rank4 + suit4;
+                        case 0:
+                            labelCard1.Visible = true;
+                            break;
+                        case 1:
+                            labelCard2.Visible = true;
+                            break;
+                        case 2:
+                            labelCard3.Visible = true;
+                            break;
+                        case 3:
+                            labelCard4.Visible = true;
+                            break;
                     }
                 }
-              }
+            }
 
               // Open the file to read from
-              using (StreamWriter sw = File.AppendText(path))
+              using (StreamWriter sw = File.AppendText(pathDealt))
               {
-                  // Write Draw Data to file
-                  sw.WriteLine(firstCard + ','
-                      + secondCard + ','
-                      + thirdCard + ','
-                      + fourthCard);
+                // Write Draw Data to file
+                sw.WriteLine(cards[0] + ','
+                      + cards[1] + ','
+                      + cards[2] + ','
+                      + cards[3]);
                   sw.Close();
               }
-              //Updates history box with new selections
-              updateHistoryBox();
+            
+            //Updates history box with new selections
+            updateHistoryBox();
               //Replaces draw button with reset button
               DrawButton.Visible = false;
               ResetButton.Visible = true;
@@ -503,7 +491,7 @@ namespace DeckDrawHW1
         {
             //https://stackoverflow.com/questions/13505248/how-to-make-autoscroll-multiline-textbox-in-winforms
             textBox1.Text = string.Empty;
-            StreamReader sr = new StreamReader(path);
+            StreamReader sr = new StreamReader(pathDealt);
             string line = sr.ReadLine();
             while (line != null)
             {
@@ -636,6 +624,55 @@ namespace DeckDrawHW1
 
             clearCardImages();
         }
+
+        //Purpose: checks the pattern matches for the cards drawn
+        //Passed: Passed arrays for the values of the ranks and suits of the selected cards
+        //Author: Matthew Brown
+        private void checkPattern(string[] ranks, string[] suits)
+        {
+            //This will need to pulled from pathWon later
+            int pattern = 0;
+
+            switch (pattern)
+            {
+                case 0: //Check if the Suits are all red
+                    patternAllRed(ranks, suits);
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        //Purpose: checkts for the pattern if the user selected any heart or diamond
+        //Passed: Passed arrays for the values of the ranks and suits of the selected cards
+        //Author: Matthew Brown
+        private void patternAllRed(string[] ranks, string[] suits)
+        {
+            for(int i = 0; i < 4; i++)
+            {
+                Console.WriteLine(i + " " + suits[i]);
+                if (suits[i] == "D" || suits[i] == "H")
+                {
+                    cardMatch[i] = true;
+                } else
+                {
+                    cardMatch[i] = false;
+                }
+            }
+
+        }
+
+
 
     }
 }
