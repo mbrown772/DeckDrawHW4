@@ -344,6 +344,12 @@ namespace DeckDrawHW1
                 if(patternWonCount >= 2) //If the user has guessed the pattern two times
                 { 
                     lastWon++;
+
+                    //Credit for how to add Sound: https://stackoverflow.com/questions/71707808/how-to-add-a-wav-file-to-windows-form-application-in-visual-studio
+                    //Attribution: TaDa!.wav by jimhancock -- https://freesound.org/s/376318/ -- License: Creative Commons 0
+                    System.Media.SoundPlayer player = new System.Media.SoundPlayer(Properties.Resources.tada);
+                    player.Play();
+
                     if (lastWon == 6)
                     {
                         MessageBox.Show("Congratulation you have completed all the Patterns! You have climed the highest mountain relish your victory!", "Fin");

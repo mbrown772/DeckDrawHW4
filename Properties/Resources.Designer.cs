@@ -69,5 +69,14 @@ namespace DeckDrawHW1.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream tada {
+            get {
+                return ResourceManager.GetStream("tada", resourceCulture);
+            }
+        }
     }
 }
