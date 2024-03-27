@@ -79,6 +79,9 @@ namespace DeckDrawHW1
         //Number of cards the art dealer has selected in this round
         int cardsSelected = 0;
 
+        //Number of times the current pattern has been won
+        int patternWonCount = 0;
+
         // Purpose: Initializes application (automatically made by .NET framework)
         public ArtDealer()
         {
@@ -335,22 +338,26 @@ namespace DeckDrawHW1
             DrawButton.Visible = false;
             ResetButton.Visible = true;
 
-            if(cardsSelected >= 4)
+            if(cardsSelected >= 4) //If the four cards the user selected match the parttern
             {
-                cardsSelected = 0;
-                lastWon++;
-                if (lastWon == 6)
-                {
-                    MessageBox.Show("Congratulation you have completed all the Patterns! You have climed the highest mountain relish your victory!", "Fin");
-                    lastWon = 5; //PLACEHOLDER TO NOT BREAK THE APP
-                } else
-                {
-                    MessageBox.Show("Congratulation you have completed this pattern! There is another secret pattern to crack!", "Pattern Solved");
+                patternWonCount++; //Increment the amount of times the pattern has been matched
+                if(patternWonCount >= 2) //If the user has guessed the pattern two times
+                { 
+                    lastWon++;
+                    if (lastWon == 6)
+                    {
+                        MessageBox.Show("Congratulation you have completed all the Patterns! You have climed the highest mountain relish your victory!", "Fin");
+                        lastWon = 5; //PLACEHOLDER TO NOT BREAK THE APP
+                    } else
+                    {
+                        MessageBox.Show("Congratulation you have completed this pattern! There is another secret pattern to crack!", "Pattern Solved");
+                    }
+                    //Credit: https://stackoverflow.com/questions/1225857/write-string-to-text-file-and-ensure-it-always-overwrites-the-existing-content
+                    File.WriteAllText(pathWon, lastWon.ToString()); //Replace contents of the file with lastWon
+                    patternWonCount = 0;
                 }
-                //Credit: https://stackoverflow.com/questions/1225857/write-string-to-text-file-and-ensure-it-always-overwrites-the-existing-content
-                File.WriteAllText(pathWon, lastWon.ToString()); //Replace contents of the file with lastWon
             }
-            
+            cardsSelected = 0;
         }
 
         // Purpose: On Stop Click, exit application
