@@ -285,16 +285,14 @@ namespace DeckDrawHW1
             string[] ranks = new string[4]; //Rank of current cards selected
             string[] cards = new string[4]; //Combined print object of rank and suit
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 4; i++) //Copy what ranks and suits are of the four cards
             {
-                suits[i] = shortName(deck[drawIndexes[i]].Item1.ToString());
+                suits[i] = shortName(deck[drawIndexes[i]].Item1.ToString()); 
                 ranks[i] = actualRank(deck[drawIndexes[i]].Item2);
-                cards[i] = ranks[i] + suits[i];
-
+                cards[i] = ranks[i] + suits[i]; //Build the print object to be put in history
             }
 
-            checkPattern(ranks, suits);
-
+            checkPattern(ranks, suits); //Check the current picks against the current pattern
 
             //Add asterics to the chosen cards and make the green border visible
             for (int i = 0; i < 4; i++)
