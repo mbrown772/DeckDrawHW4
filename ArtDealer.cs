@@ -82,6 +82,9 @@ namespace DeckDrawHW1
         //Number of times the current pattern has been won
         int patternWonCount = 0;
 
+        //List for the cards combinations that have already been picked for this pattern
+        List<string> pickedPatterns = new List<string>();
+
         // Purpose: Initializes application (automatically made by .NET framework)
         public ArtDealer()
         {
@@ -132,7 +135,7 @@ namespace DeckDrawHW1
                 File.WriteAllText(pathWon, "0");
             }
             StreamReader sr = new StreamReader(pathWon);
-            lastWon = Int32.Parse(sr.ReadLine());
+            lastWon = Int32.Parse(sr.ReadLine()); //Get lastWon from the file
             sr.Close();
             if(lastWon < 0 || lastWon > 5) //If someone edited the file trying to break the program
             {
@@ -292,76 +295,96 @@ namespace DeckDrawHW1
                 cards[i] = ranks[i] + suits[i]; //Build the print object to be put in history
             }
 
-            checkPattern(ranks, suits); //Check the current picks against the current pattern
 
-            //Add asterics to the chosen cards and make the green border visible
-            for (int i = 0; i < 4; i++)
+            //Credit: https://stackoverflow.com/questions/6441583/is-there-a-simple-way-that-i-can-sort-characters-in-a-string-in-alphabetical-ord
+            string builder = cards[0] + cards[1] + cards[2] + cards[3]; //Build a string of the cards drawn
+            char[] builderArrary = builder.ToCharArray(); //Convert it to a character array
+            Array.Sort(builderArrary); //Sort the character array 
+            string sortedCards = new string(builderArrary); //make it a string
+           
+            if(pickedPatterns.Contains(sortedCards)) //If the user has already picked that combination of cards
             {
-                if (cardMatch[i]) //if the card has matched the current pattern
+                DrawButton.Visible = false;
+                ResetButton.Visible = true;
+
+                string message = "You have already picked this pattern once! Your patterns must have four different cards than one of your previous draws!\n";
+                MessageBox.Show(message, title);
+
+            } else { //IF the user picked a unique pattern this draw
+                pickedPatterns.Add(sortedCards);
+                checkPattern(ranks, suits); //Check the current picks against the current pattern
+
+                //Add asterics to the chosen cards and make the green border visible
+                for (int i = 0; i < 4; i++)
                 {
-                    cards[i] = "*" + cards[i] + "*";
-                    switch (i) //Make the green border for the current card visible
+                    if (cardMatch[i]) //if the card has matched the current pattern
                     {
-                        case 0:
-                            labelCard1.Visible = true;
-                            break;
-                        case 1:
-                            labelCard2.Visible = true;
-                            break;
-                        case 2:
-                            labelCard3.Visible = true;
-                            break;
-                        case 3:
-                            labelCard4.Visible = true;
-                            break;
+                        cards[i] = "*" + cards[i] + "*";
+                        switch (i) //Make the green border for the current card visible
+                        {
+                            case 0:
+                                labelCard1.Visible = true;
+                                break;
+                            case 1:
+                                labelCard2.Visible = true;
+                                break;
+                            case 2:
+                                labelCard3.Visible = true;
+                                break;
+                            case 3:
+                                labelCard4.Visible = true;
+                                break;
+                        }
+                        cardsSelected++; //Increment the number of cards selected by the dealer
                     }
-                    cardsSelected++; //Increment the number of cards selected by the dealer
                 }
-            }
 
-            // Open the file to read from
-            using (StreamWriter sw = File.AppendText(pathDealt))
-            {
-                // Write Draw Data to file
-                sw.WriteLine(cards[0] + ','
-                      + cards[1] + ','
-                      + cards[2] + ','
-                      + cards[3]);
-                sw.Close();
-            }
-            //Updates history box with new selections
-            updateHistoryBox();
+                // Open the file to read from
+                using (StreamWriter sw = File.AppendText(pathDealt))
+                {
+                    // Write Draw Data to file
+                    sw.WriteLine(cards[0] + ','
+                          + cards[1] + ','
+                          + cards[2] + ','
+                          + cards[3]);
+                    sw.Close();
+                }
+                //Updates history box with new selections
+                updateHistoryBox();
 
-            //Replaces draw button with reset button
-            DrawButton.Visible = false;
-            ResetButton.Visible = true;
+                //Replaces draw button with reset button
+                DrawButton.Visible = false;
+                ResetButton.Visible = true;
 
-            if(cardsSelected >= 4) //If the four cards the user selected match the parttern
-            {
-                patternWonCount++; //Increment the amount of times the pattern has been matched
-                if(patternWonCount >= 2) //If the user has guessed the pattern two times
-                { 
-                    lastWon++;
+                if(cardsSelected >= 4) //If the four cards the user selected match the parttern
+                {
+                    patternWonCount++; //Increment the amount of times the pattern has been matched
+                    if(patternWonCount >= 2) //If the user has guessed the pattern two times
+                    { 
+                        lastWon++; //Increment the lastWon to be updated in txt file pointed at by pathWon
+                        pickedPatterns.Clear(); //Empty the picked arrays
 
-                    //Credit for how to add Sound: https://stackoverflow.com/questions/71707808/how-to-add-a-wav-file-to-windows-form-application-in-visual-studio
-                    //Attribution: TaDa!.wav by jimhancock -- https://freesound.org/s/376318/ -- License: Creative Commons 0
-                    System.Media.SoundPlayer player = new System.Media.SoundPlayer(Properties.Resources.tada);
-                    player.Play();
+                        //Credit for how to add Sound: https://stackoverflow.com/questions/71707808/how-to-add-a-wav-file-to-windows-form-application-in-visual-studio
+                        //Attribution: TaDa!.wav by jimhancock -- https://freesound.org/s/376318/ -- License: Creative Commons 0
+                        System.Media.SoundPlayer player = new System.Media.SoundPlayer(Properties.Resources.tada);
+                        player.Play();
 
-                    if (lastWon == 6)
-                    {
-                        MessageBox.Show("Congratulation you have completed all the Patterns! You have climed the highest mountain relish your victory!", "Fin");
-                        lastWon = 5; //PLACEHOLDER TO NOT BREAK THE APP
-                    } else
-                    {
-                        MessageBox.Show("Congratulation you have completed this pattern! There is another secret pattern to crack!", "Pattern Solved");
+                        if (lastWon == 6)
+                        {
+                            MessageBox.Show("Congratulation you have completed all the Patterns! You have climbed the highest mountain relish your victory!", "Fin");
+                            lastWon = 5; //PLACEHOLDER TO NOT BREAK THE APP
+                        } else
+                        {
+                            MessageBox.Show("Congratulation you have completed this pattern! There is another secret pattern to crack!", "Pattern Solved");
+                        }
+                        //Credit: https://stackoverflow.com/questions/1225857/write-string-to-text-file-and-ensure-it-always-overwrites-the-existing-content
+                        File.WriteAllText(pathWon, lastWon.ToString()); //Replace contents of the file with lastWon
+                        patternWonCount = 0;
                     }
-                    //Credit: https://stackoverflow.com/questions/1225857/write-string-to-text-file-and-ensure-it-always-overwrites-the-existing-content
-                    File.WriteAllText(pathWon, lastWon.ToString()); //Replace contents of the file with lastWon
-                    patternWonCount = 0;
                 }
+                cardsSelected = 0;
             }
-            cardsSelected = 0;
+            
         }
 
         // Purpose: On Stop Click, exit application
