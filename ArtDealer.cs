@@ -85,6 +85,9 @@ namespace DeckDrawHW1
         //List for the cards combinations that have already been picked for this pattern
         List<string> pickedPatterns = new List<string>();
 
+        //Variable to determine if the user has finished all 6 patterns
+        private bool finishedPatterns = false;
+
         // Purpose: Initializes application (automatically made by .NET framework)
         public ArtDealer()
         {
@@ -137,7 +140,7 @@ namespace DeckDrawHW1
             StreamReader sr = new StreamReader(pathWon);
             lastWon = Int32.Parse(sr.ReadLine()); //Get lastWon from the file
             sr.Close();
-            if(lastWon < 0 || lastWon > 5) //If someone edited the file trying to break the program
+            if(lastWon < 0 || lastWon > 6) //If someone edited the file trying to break the program
             {
                 MessageBox.Show("Please do not edit LastWon.txt. Reseting to first pattern!", "Stop Cheating");
                 File.WriteAllText(pathWon, "0");
@@ -170,9 +173,16 @@ namespace DeckDrawHW1
 
             //Clears card images
             clearCardImages();
-            
+
             //Shows the pick a card message
             PickACardMesage.Visible = true;
+
+            //If we finished the last pattern
+            if (lastWon == 6)
+            {
+                finishedPatterns = true;
+                displayCongrats();
+            }
         }
         //Purpose: Logic for the select button for card 1 is clicked. Makes the drowpdows for card 2 appear,
         //         drop downs for card 1 disappear and updates card 1 image on the screen.
@@ -371,8 +381,8 @@ namespace DeckDrawHW1
 
                         if (lastWon == 6)
                         {
-                            MessageBox.Show("Congratulation you have completed all the Patterns! You have climbed the highest mountain relish your victory!", "Fin");
-                            lastWon = 5; //PLACEHOLDER TO NOT BREAK THE APP
+                            finishedPatterns = true;
+                            displayCongrats();
                         } else
                         {
                             MessageBox.Show("Congratulation you have completed this pattern! There is another secret pattern to crack!", "Pattern Solved");
@@ -669,9 +679,14 @@ namespace DeckDrawHW1
 
         // Purpose:  On reset button click clears card images
         // Author: Nicholas Hieb
+        // Editor: Matthew Brown
         private void ResetButton_Click(object sender, EventArgs e)
         {
-            
+            //If we are on the last pattern reset back to pattern 1
+            if(finishedPatterns)
+            {
+                resetPatterns();
+            }
             ResetButton.Visible = false;
             DrawButton.Visible = false;
             SelectButton1.Visible = true;
@@ -884,6 +899,28 @@ namespace DeckDrawHW1
                     cardMatch[i] = false;
                 }
             }
+        }
+
+        //Purpose: This fucntion displays the congrats image and hides cards and makes the reset button visible
+        //Author: Matthew Brown
+        private void displayCongrats()
+        {
+            PickACardMesage.Visible = false;
+            Congrats.Visible = true;
+            ResetButton.Visible = true;
+            clearCardImages();
+            MessageBox.Show("Congratulation you have completed all the Patterns! You have climbed the highest mountain relish your victory!", "Fin");
+        }
+
+        //Purpose: This function resets the pattern back to pattern one.
+        //Author: Matthew Brown
+        private void resetPatterns()
+        {
+            Congrats.Visible = false; //Make the congrats image invisible
+            File.WriteAllText(pathWon, "0"); //Reset the txt file
+            lastWon = 0;
+            finishedPatterns = false;
+            MessageBox.Show("Your game has been reset to pattern 1 good luck!", title);
         }
 
     }

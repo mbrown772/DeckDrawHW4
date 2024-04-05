@@ -33,11 +33,8 @@ namespace DeckDrawHW1
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ArtDealer));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.DrawButton = new System.Windows.Forms.Button();
-            this.StopButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.card1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Congrats = new System.Windows.Forms.PictureBox();
             this.PickACardMesage = new System.Windows.Forms.Label();
             this.ResetButton = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -56,6 +53,10 @@ namespace DeckDrawHW1
             this.card4 = new System.Windows.Forms.PictureBox();
             this.card3 = new System.Windows.Forms.PictureBox();
             this.card2 = new System.Windows.Forms.PictureBox();
+            this.card1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.StopButton = new System.Windows.Forms.Button();
+            this.DrawButton = new System.Windows.Forms.Button();
             this.SelectButton1 = new System.Windows.Forms.Button();
             this.SelectButton2 = new System.Windows.Forms.Button();
             this.SelectButton3 = new System.Windows.Forms.Button();
@@ -64,11 +65,12 @@ namespace DeckDrawHW1
             this.labelCard2 = new System.Windows.Forms.Label();
             this.labelCard3 = new System.Windows.Forms.Label();
             this.labelCard4 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.card1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Congrats)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.card4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.card3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.card2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.card1)).BeginInit();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -76,61 +78,11 @@ namespace DeckDrawHW1
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // DrawButton
-            // 
-            this.DrawButton.BackColor = System.Drawing.Color.Green;
-            this.DrawButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DrawButton.ForeColor = System.Drawing.Color.White;
-            this.DrawButton.Location = new System.Drawing.Point(145, 513);
-            this.DrawButton.Name = "DrawButton";
-            this.DrawButton.Size = new System.Drawing.Size(327, 83);
-            this.DrawButton.TabIndex = 0;
-            this.DrawButton.Text = "Draw";
-            this.DrawButton.UseVisualStyleBackColor = false;
-            this.DrawButton.Click += new System.EventHandler(this.DrawButton_Click);
-            // 
-            // StopButton
-            // 
-            this.StopButton.BackColor = System.Drawing.Color.Red;
-            this.StopButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StopButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.StopButton.Location = new System.Drawing.Point(580, 513);
-            this.StopButton.Name = "StopButton";
-            this.StopButton.Size = new System.Drawing.Size(327, 83);
-            this.StopButton.TabIndex = 5;
-            this.StopButton.Text = "Stop";
-            this.StopButton.UseVisualStyleBackColor = false;
-            this.StopButton.Click += new System.EventHandler(this.StopButton_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Coral;
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.label1.Font = new System.Drawing.Font("Verdana", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Cornsilk;
-            this.label1.Location = new System.Drawing.Point(331, 0);
-            this.label1.Name = "label1";
-            this.label1.Padding = new System.Windows.Forms.Padding(1);
-            this.label1.Size = new System.Drawing.Size(419, 63);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "The Art Dealer";
-            // 
-            // card1
-            // 
-            this.card1.BackColor = System.Drawing.Color.Transparent;
-            this.card1.Location = new System.Drawing.Point(250, 193);
-            this.card1.Name = "card1";
-            this.card1.Size = new System.Drawing.Size(142, 215);
-            this.card1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.card1.TabIndex = 7;
-            this.card1.TabStop = false;
-            // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.DarkGreen;
             this.groupBox1.BackgroundImage = global::DeckDrawHW1.Properties.Resources.poker_table_texture;
+            this.groupBox1.Controls.Add(this.Congrats);
             this.groupBox1.Controls.Add(this.PickACardMesage);
             this.groupBox1.Controls.Add(this.ResetButton);
             this.groupBox1.Controls.Add(this.textBox1);
@@ -168,6 +120,18 @@ namespace DeckDrawHW1
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = " ";
+            // 
+            // Congrats
+            // 
+            this.Congrats.AccessibleName = "";
+            this.Congrats.Image = ((System.Drawing.Image)(resources.GetObject("Congrats.Image")));
+            this.Congrats.Location = new System.Drawing.Point(231, 158);
+            this.Congrats.Name = "Congrats";
+            this.Congrats.Size = new System.Drawing.Size(617, 349);
+            this.Congrats.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Congrats.TabIndex = 26;
+            this.Congrats.TabStop = false;
+            this.Congrats.Visible = false;
             // 
             // PickACardMesage
             // 
@@ -440,6 +404,57 @@ namespace DeckDrawHW1
             this.card2.TabIndex = 8;
             this.card2.TabStop = false;
             // 
+            // card1
+            // 
+            this.card1.BackColor = System.Drawing.Color.Transparent;
+            this.card1.Location = new System.Drawing.Point(250, 193);
+            this.card1.Name = "card1";
+            this.card1.Size = new System.Drawing.Size(142, 215);
+            this.card1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.card1.TabIndex = 7;
+            this.card1.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Coral;
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.label1.Font = new System.Drawing.Font("Verdana", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Cornsilk;
+            this.label1.Location = new System.Drawing.Point(331, 0);
+            this.label1.Name = "label1";
+            this.label1.Padding = new System.Windows.Forms.Padding(1);
+            this.label1.Size = new System.Drawing.Size(419, 63);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "The Art Dealer";
+            // 
+            // StopButton
+            // 
+            this.StopButton.BackColor = System.Drawing.Color.Red;
+            this.StopButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StopButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.StopButton.Location = new System.Drawing.Point(580, 513);
+            this.StopButton.Name = "StopButton";
+            this.StopButton.Size = new System.Drawing.Size(327, 83);
+            this.StopButton.TabIndex = 5;
+            this.StopButton.Text = "Stop";
+            this.StopButton.UseVisualStyleBackColor = false;
+            this.StopButton.Click += new System.EventHandler(this.StopButton_Click);
+            // 
+            // DrawButton
+            // 
+            this.DrawButton.BackColor = System.Drawing.Color.Green;
+            this.DrawButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DrawButton.ForeColor = System.Drawing.Color.White;
+            this.DrawButton.Location = new System.Drawing.Point(145, 513);
+            this.DrawButton.Name = "DrawButton";
+            this.DrawButton.Size = new System.Drawing.Size(327, 83);
+            this.DrawButton.TabIndex = 0;
+            this.DrawButton.Text = "Draw";
+            this.DrawButton.UseVisualStyleBackColor = false;
+            this.DrawButton.Click += new System.EventHandler(this.DrawButton_Click);
+            // 
             // SelectButton1
             // 
             this.SelectButton1.AutoSize = true;
@@ -538,12 +553,13 @@ namespace DeckDrawHW1
             this.Name = "ArtDealer";
             this.Text = "Art Dealer";
             this.Load += new System.EventHandler(this.ArtDealer_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.card1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Congrats)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.card4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.card3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.card2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.card1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -581,8 +597,7 @@ namespace DeckDrawHW1
         private System.Windows.Forms.Label labelCard2;
         private System.Windows.Forms.Label labelCard3;
         private System.Windows.Forms.Label labelCard4;
-
-
+        private PictureBox Congrats;
     }
 }
 
