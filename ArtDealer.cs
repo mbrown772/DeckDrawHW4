@@ -370,7 +370,14 @@ namespace DeckDrawHW1
                 {
                     patternWonCount++; //Increment the amount of times the pattern has been matched
                     if(patternWonCount >= 2) //If the user has guessed the pattern two times
-                    { 
+                    {
+                        using (StreamWriter sw = File.AppendText(pathDealt))
+                        {
+                            sw.WriteLine("USER WON PATTERN " + (lastWon + 1));
+                            sw.Close();
+                        }
+                        updateHistoryBox();
+
                         lastWon++; //Increment the lastWon to be updated in txt file pointed at by pathWon
                         pickedPatterns.Clear(); //Empty the picked arrays
 
