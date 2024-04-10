@@ -1,10 +1,27 @@
 ﻿// This Program was developed using C# in Visual Studio 2022
 // Homework 4 Deck Draw Program
 // Teammates are Nicholas/Brett/James/Jeremy/Matthew
-// 3/22/24 CS4500
-// This Program will allow user to select 4 cards, highlighting red cards and writing selections to a file
-// Central Data Structure is Lists
+// Lead Coder: Matthew Brown
+// 4/10/24 CS4500
+// This Program will allow user to select 4 cards, the program will compare them to different patterns.
+// There are 6 patterns and the program goes to the next pattern after two seperate hands where all four cards match the current pattern.
+// Central Data Structure is Lists and the program writes to cardsDealt.txt and LastWon.txt in the DrawData folder.
 // This Program used MicroSoft's Tutorial on C# Picture viewer apps,StackOverflow.com,and learn.microsoft.com/en-us/dotnet/api.
+
+/* Credits:
+ * learn.microsoft.com/en-us/dotnet/api
+ * https://learn.microsoft.com/en-us/visualstudio/get-started/csharp/tutorial-windows-forms-picture-viewer-layout?view=vs-2022
+ * https://stackoverflow.com/questions/1225857/write-string-to-text-file-and-ensure-it-always-overwrites-the-existing-content
+ * https://stackoverflow.com/questions/6441583/is-there-a-simple-way-that-i-can-sort-characters-in-a-string-in-alphabetical-ord
+ * https://stackoverflow.com/questions/71707808/how-to-add-a-wav-file-to-windows-form-application-in-visual-studio
+ * https://freesound.org/s/376318/
+ * https://stackoverflow.com/questions/1225857/write-string-to-text-file-and-ensure-it-always-overwrites-the-existing-content
+ * https://stackoverflow.com/questions/13505248/how-to-make-autoscroll-multiline-textbox-in-winforms
+ * https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.textboxbase.appendtext?view=windowsdesktop-8.0
+ * https://stackoverflow.com/questions/13318561/adding-new-line-of-data-to-textbox
+ * https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/types/how-to-convert-a-string-to-a-number
+ */
+
 
 /* 
  * ==================================
@@ -580,15 +597,15 @@ namespace DeckDrawHW1
         // Editors: James Struble, Matthew Brown
         private void updateHistoryBox()
         {
-            //https://stackoverflow.com/questions/13505248/how-to-make-autoscroll-multiline-textbox-in-winforms
+            //Credit: https://stackoverflow.com/questions/13505248/how-to-make-autoscroll-multiline-textbox-in-winforms
             textBox1.Text = string.Empty;
             StreamReader sr = new StreamReader(pathDealt);
             string line = sr.ReadLine();
             while (line != null)
             {
-                //https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.textboxbase.appendtext?view=windowsdesktop-8.0
+                //Credit: https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.textboxbase.appendtext?view=windowsdesktop-8.0
                 textBox1.AppendText(line);
-                //https://stackoverflow.com/questions/13318561/adding-new-line-of-data-to-textbox
+                //CreditL https://stackoverflow.com/questions/13318561/adding-new-line-of-data-to-textbox
                 textBox1.AppendText(Environment.NewLine);
                 line = sr.ReadLine();
             }
@@ -611,7 +628,7 @@ namespace DeckDrawHW1
         }
 
         // Purpose: Clears card images
-        // Author: Nicholas Hie
+        // Author: Nicholas Hieb
         private void clearCardImages()
         {
             card1.Image = null;
@@ -721,7 +738,8 @@ namespace DeckDrawHW1
             clearCardImages();
         }
 
-        //Purpose: checks the pattern matches for the cards drawn
+        //Purpose: Function that determines which pattern to check drawn cards against.
+        //         lastWon variable indicates what the current pattern is
         //Passed: Passed arrays for the values of the ranks and suits of the selected cards
         //Author: Matthew Brown
         private void checkPattern(string[] ranks, string[] suits)
@@ -757,6 +775,7 @@ namespace DeckDrawHW1
         }
 
         //Purpose: checks for the pattern if the user selected any heart or diamond
+        //         Raises flags in cardMatch[i] to indicate which cards in position 0 -> 4 match the pattern
         //Passed: Passed arrays for the values of the ranks and suits of the selected cards
         //Author: Matthew Brown
         private void patternAllRed(string[] ranks, string[] suits)
@@ -775,6 +794,7 @@ namespace DeckDrawHW1
         }
 
         //Purpose: checks for the pattern if the user selected any club
+        //         Raises flags in cardMatch[i] to indicate which cards in position 0 -> 4 match the pattern
         //Passed: Passed arrays for the values of the ranks and suits of the selected cards
         //Author: Matthew Brown
         private void patternAllClubs(string[] ranks, string[] suits)
@@ -792,6 +812,7 @@ namespace DeckDrawHW1
         }
 
         //Purpose: checks for the pattern if the user selected any face cards
+        //         Raises flags in cardMatch[i] to indicate which cards in position 0 -> 4 match the pattern
         //Passed: Passed arrays for the values of the ranks and suits of the selected cards
         //Author: Matthew Brown
         private void patternFaceCards(string[] ranks, string[] suits)
@@ -810,6 +831,7 @@ namespace DeckDrawHW1
         }
 
         //Purpose: checks for the pattern if the user selected any cards between 2 and 9
+        //         Raises flags in cardMatch[i] to indicate which cards in position 0 -> 4 match the pattern
         //Passed: Passed arrays for the values of the ranks and suits of the selected cards
         //Author: Matthew Brown
         private void patternSingleDigits(string[] ranks, string[] suits)
@@ -818,9 +840,8 @@ namespace DeckDrawHW1
             {
                 try
                 {
-                    //https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/types/how-to-convert-a-string-to-a-number
+                    //Credit: https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/types/how-to-convert-a-string-to-a-number
                     int test = Int32.Parse(ranks[i]); //Convert the string to a number so we can compare its values
-                    Console.WriteLine("Test is: " + test);
                     if (test >= 2 && test <= 9) //If the number is single digit
                     {
                         cardMatch[i] = true;
@@ -834,12 +855,12 @@ namespace DeckDrawHW1
                 catch //Catching all the face cards here
                 {
                     cardMatch[i] = false;
-                    Console.WriteLine("not a number");
                 }
             }
         }
 
         //Purpose: checks for the pattern if the user selected any cards that are prime
+        //         Raises flags in cardMatch[i] to indicate which cards in position 0 -> 4 match the pattern
         //Passed: Passed arrays for the values of the ranks and suits of the selected cards
         //Author: Matthew Brown
         private void patternAnyPrime(string[] ranks, string[] suits)
@@ -858,6 +879,7 @@ namespace DeckDrawHW1
         }
 
         //Purpose: This pattern selects all cards from the highest rank present (if it is KD KH JD JH it would select the two kings)
+        //         Raises flags in cardMatch[i] to indicate which cards in position 0 -> 4 match the pattern
         //Passed: Passed arrays for the values of the ranks and suits of the selected cards
         //Author: Matthew Brown
         private void patternHighestRank(string[] ranks, string[] suits)
@@ -908,13 +930,13 @@ namespace DeckDrawHW1
             }
         }
 
-        //Purpose: This fucntion displays the congrats image and hides cards and makes the reset button visible
+        //Purpose: This function displays the congrats image and hides cards and makes the reset button visible
         //Author: Matthew Brown
         private void displayCongrats()
         {
-            PickACardMesage.Visible = false;
-            Congrats.Visible = true;
-            ResetButton.Visible = true;
+            PickACardMesage.Visible = false; //Need this so pickacard message isn't visible in front of the image
+            Congrats.Visible = true; //Make congrats image visible
+            ResetButton.Visible = true; ///Makes reset button visible
             clearCardImages();
             MessageBox.Show("Congratulation you have completed all the Patterns! You have climbed the highest mountain relish your victory!", "Fin");
         }
@@ -925,8 +947,8 @@ namespace DeckDrawHW1
         {
             Congrats.Visible = false; //Make the congrats image invisible
             File.WriteAllText(pathWon, "0"); //Reset the txt file
-            lastWon = 0;
-            finishedPatterns = false;
+            lastWon = 0; //Go back to pattern 1
+            finishedPatterns = false; //Set this to false so the congrats image doesn't appear on next reset click
             MessageBox.Show("Your game has been reset to pattern 1 good luck!", title);
         }
 
