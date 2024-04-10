@@ -75,6 +75,7 @@ namespace DeckDrawHW1
             // 
             // contextMenuStrip1
             // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
@@ -114,9 +115,11 @@ namespace DeckDrawHW1
             this.groupBox1.Controls.Add(this.labelCard3);
             this.groupBox1.Controls.Add(this.labelCard4);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.Info;
-            this.groupBox1.Location = new System.Drawing.Point(3, 12);
+            this.groupBox1.Location = new System.Drawing.Point(4, 15);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1087, 604);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(1449, 743);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = " ";
@@ -125,9 +128,10 @@ namespace DeckDrawHW1
             // 
             this.Congrats.AccessibleName = "";
             this.Congrats.Image = ((System.Drawing.Image)(resources.GetObject("Congrats.Image")));
-            this.Congrats.Location = new System.Drawing.Point(231, 158);
+            this.Congrats.Location = new System.Drawing.Point(308, 194);
+            this.Congrats.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Congrats.Name = "Congrats";
-            this.Congrats.Size = new System.Drawing.Size(617, 349);
+            this.Congrats.Size = new System.Drawing.Size(823, 430);
             this.Congrats.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Congrats.TabIndex = 26;
             this.Congrats.TabStop = false;
@@ -138,9 +142,10 @@ namespace DeckDrawHW1
             this.PickACardMesage.AutoSize = true;
             this.PickACardMesage.BackColor = System.Drawing.Color.DarkSlateGray;
             this.PickACardMesage.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.PickACardMesage.Location = new System.Drawing.Point(402, 109);
+            this.PickACardMesage.Location = new System.Drawing.Point(536, 134);
+            this.PickACardMesage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.PickACardMesage.Name = "PickACardMesage";
-            this.PickACardMesage.Size = new System.Drawing.Size(290, 62);
+            this.PickACardMesage.Size = new System.Drawing.Size(362, 78);
             this.PickACardMesage.TabIndex = 24;
             this.PickACardMesage.Text = "Pick a Card! Any Card!\r\n(No duplicates!)";
             this.PickACardMesage.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -151,9 +156,10 @@ namespace DeckDrawHW1
             this.ResetButton.BackColor = System.Drawing.Color.Green;
             this.ResetButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ResetButton.ForeColor = System.Drawing.Color.White;
-            this.ResetButton.Location = new System.Drawing.Point(145, 513);
+            this.ResetButton.Location = new System.Drawing.Point(193, 631);
+            this.ResetButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ResetButton.Name = "ResetButton";
-            this.ResetButton.Size = new System.Drawing.Size(327, 83);
+            this.ResetButton.Size = new System.Drawing.Size(436, 102);
             this.ResetButton.TabIndex = 23;
             this.ResetButton.Text = "Reset";
             this.ResetButton.UseVisualStyleBackColor = false;
@@ -161,12 +167,13 @@ namespace DeckDrawHW1
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(878, 66);
+            this.textBox1.Location = new System.Drawing.Point(1171, 81);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(173, 144);
+            this.textBox1.Size = new System.Drawing.Size(229, 176);
             this.textBox1.TabIndex = 22;
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -175,9 +182,10 @@ namespace DeckDrawHW1
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.DarkSlateGray;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.label4.Location = new System.Drawing.Point(915, 32);
+            this.label4.Location = new System.Drawing.Point(1220, 39);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(136, 31);
+            this.label4.Size = new System.Drawing.Size(169, 39);
             this.label4.TabIndex = 12;
             this.label4.Text = "HISTORY";
             // 
@@ -199,9 +207,10 @@ namespace DeckDrawHW1
             "Queen",
             "King",
             "Ace"});
-            this.rankBoxCard4.Location = new System.Drawing.Point(698, 419);
+            this.rankBoxCard4.Location = new System.Drawing.Point(931, 516);
+            this.rankBoxCard4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rankBoxCard4.Name = "rankBoxCard4";
-            this.rankBoxCard4.Size = new System.Drawing.Size(142, 21);
+            this.rankBoxCard4.Size = new System.Drawing.Size(188, 24);
             this.rankBoxCard4.TabIndex = 21;
             this.rankBoxCard4.SelectedIndexChanged += new System.EventHandler(this.rankBoxCard4_SelectedIndexChanged);
             // 
@@ -214,9 +223,10 @@ namespace DeckDrawHW1
             "Clubs",
             "Diamonds",
             "Spades"});
-            this.suitBoxCard4.Location = new System.Drawing.Point(698, 446);
+            this.suitBoxCard4.Location = new System.Drawing.Point(931, 549);
+            this.suitBoxCard4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.suitBoxCard4.Name = "suitBoxCard4";
-            this.suitBoxCard4.Size = new System.Drawing.Size(142, 21);
+            this.suitBoxCard4.Size = new System.Drawing.Size(188, 24);
             this.suitBoxCard4.TabIndex = 20;
             this.suitBoxCard4.SelectedIndexChanged += new System.EventHandler(this.suitBoxCard4_SelectedIndexChanged);
             // 
@@ -238,9 +248,10 @@ namespace DeckDrawHW1
             "Queen",
             "King",
             "Ace"});
-            this.rankBoxCard3.Location = new System.Drawing.Point(550, 419);
+            this.rankBoxCard3.Location = new System.Drawing.Point(733, 516);
+            this.rankBoxCard3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rankBoxCard3.Name = "rankBoxCard3";
-            this.rankBoxCard3.Size = new System.Drawing.Size(142, 21);
+            this.rankBoxCard3.Size = new System.Drawing.Size(188, 24);
             this.rankBoxCard3.TabIndex = 19;
             this.rankBoxCard3.SelectedIndexChanged += new System.EventHandler(this.rankBoxCard3_SelectedIndexChanged);
             // 
@@ -253,9 +264,10 @@ namespace DeckDrawHW1
             "Clubs",
             "Diamonds",
             "Spades"});
-            this.suitBoxCard3.Location = new System.Drawing.Point(550, 446);
+            this.suitBoxCard3.Location = new System.Drawing.Point(733, 549);
+            this.suitBoxCard3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.suitBoxCard3.Name = "suitBoxCard3";
-            this.suitBoxCard3.Size = new System.Drawing.Size(142, 21);
+            this.suitBoxCard3.Size = new System.Drawing.Size(188, 24);
             this.suitBoxCard3.TabIndex = 18;
             this.suitBoxCard3.SelectedIndexChanged += new System.EventHandler(this.suitBoxCard3_SelectedIndexChanged);
             // 
@@ -277,9 +289,10 @@ namespace DeckDrawHW1
             "Queen",
             "King",
             "Ace"});
-            this.rankBoxCard2.Location = new System.Drawing.Point(402, 419);
+            this.rankBoxCard2.Location = new System.Drawing.Point(536, 516);
+            this.rankBoxCard2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rankBoxCard2.Name = "rankBoxCard2";
-            this.rankBoxCard2.Size = new System.Drawing.Size(142, 21);
+            this.rankBoxCard2.Size = new System.Drawing.Size(188, 24);
             this.rankBoxCard2.TabIndex = 17;
             this.rankBoxCard2.SelectedIndexChanged += new System.EventHandler(this.rankBoxCard2_SelectedIndexChanged);
             // 
@@ -292,9 +305,10 @@ namespace DeckDrawHW1
             "Clubs",
             "Diamonds",
             "Spades"});
-            this.suitBoxCard2.Location = new System.Drawing.Point(402, 446);
+            this.suitBoxCard2.Location = new System.Drawing.Point(536, 549);
+            this.suitBoxCard2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.suitBoxCard2.Name = "suitBoxCard2";
-            this.suitBoxCard2.Size = new System.Drawing.Size(142, 21);
+            this.suitBoxCard2.Size = new System.Drawing.Size(188, 24);
             this.suitBoxCard2.TabIndex = 16;
             this.suitBoxCard2.SelectedIndexChanged += new System.EventHandler(this.suitBoxCard2_SelectedIndexChanged);
             // 
@@ -303,9 +317,10 @@ namespace DeckDrawHW1
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.DarkSlateGray;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(211, 447);
+            this.label3.Location = new System.Drawing.Point(281, 550);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 20);
+            this.label3.Size = new System.Drawing.Size(46, 25);
             this.label3.TabIndex = 15;
             this.label3.Text = "Suit";
             // 
@@ -314,9 +329,10 @@ namespace DeckDrawHW1
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.DarkSlateGray;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(201, 420);
+            this.label2.Location = new System.Drawing.Point(268, 517);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(47, 20);
+            this.label2.Size = new System.Drawing.Size(57, 25);
             this.label2.TabIndex = 14;
             this.label2.Text = "Rank";
             // 
@@ -338,9 +354,10 @@ namespace DeckDrawHW1
             "Queen",
             "King",
             "Ace"});
-            this.rankBoxCard1.Location = new System.Drawing.Point(254, 419);
+            this.rankBoxCard1.Location = new System.Drawing.Point(339, 516);
+            this.rankBoxCard1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rankBoxCard1.Name = "rankBoxCard1";
-            this.rankBoxCard1.Size = new System.Drawing.Size(142, 21);
+            this.rankBoxCard1.Size = new System.Drawing.Size(188, 24);
             this.rankBoxCard1.TabIndex = 13;
             this.rankBoxCard1.SelectedIndexChanged += new System.EventHandler(this.rankBoxCard1_SelectedIndexChanged);
             // 
@@ -353,33 +370,35 @@ namespace DeckDrawHW1
             "Clubs",
             "Diamonds",
             "Spades"});
-            this.suitBoxCard1.Location = new System.Drawing.Point(254, 446);
+            this.suitBoxCard1.Location = new System.Drawing.Point(339, 549);
+            this.suitBoxCard1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.suitBoxCard1.Name = "suitBoxCard1";
-            this.suitBoxCard1.Size = new System.Drawing.Size(142, 21);
+            this.suitBoxCard1.Size = new System.Drawing.Size(188, 24);
             this.suitBoxCard1.TabIndex = 12;
             this.suitBoxCard1.SelectedIndexChanged += new System.EventHandler(this.suitBoxCard1_SelectedIndexChanged);
             // 
             // infoBox
             // 
+            this.infoBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.infoBox.AutoSize = true;
             this.infoBox.BackColor = System.Drawing.Color.DarkSlateGray;
             this.infoBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.infoBox.Dock = System.Windows.Forms.DockStyle.Left;
-            this.infoBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.infoBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.infoBox.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.infoBox.Location = new System.Drawing.Point(3, 16);
+            this.infoBox.Location = new System.Drawing.Point(0, 0);
+            this.infoBox.Margin = new System.Windows.Forms.Padding(0);
             this.infoBox.Name = "infoBox";
-            this.infoBox.Padding = new System.Windows.Forms.Padding(3);
-            this.infoBox.Size = new System.Drawing.Size(327, 148);
+            this.infoBox.Size = new System.Drawing.Size(342, 222);
             this.infoBox.TabIndex = 11;
             this.infoBox.Text = resources.GetString("infoBox.Text");
             // 
             // card4
             // 
             this.card4.BackColor = System.Drawing.Color.Transparent;
-            this.card4.Location = new System.Drawing.Point(702, 193);
+            this.card4.Location = new System.Drawing.Point(936, 238);
+            this.card4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.card4.Name = "card4";
-            this.card4.Size = new System.Drawing.Size(142, 215);
+            this.card4.Size = new System.Drawing.Size(189, 265);
             this.card4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.card4.TabIndex = 10;
             this.card4.TabStop = false;
@@ -387,9 +406,10 @@ namespace DeckDrawHW1
             // card3
             // 
             this.card3.BackColor = System.Drawing.Color.Transparent;
-            this.card3.Location = new System.Drawing.Point(552, 193);
+            this.card3.Location = new System.Drawing.Point(736, 238);
+            this.card3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.card3.Name = "card3";
-            this.card3.Size = new System.Drawing.Size(142, 215);
+            this.card3.Size = new System.Drawing.Size(189, 265);
             this.card3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.card3.TabIndex = 9;
             this.card3.TabStop = false;
@@ -397,9 +417,10 @@ namespace DeckDrawHW1
             // card2
             // 
             this.card2.BackColor = System.Drawing.Color.Transparent;
-            this.card2.Location = new System.Drawing.Point(400, 193);
+            this.card2.Location = new System.Drawing.Point(533, 238);
+            this.card2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.card2.Name = "card2";
-            this.card2.Size = new System.Drawing.Size(142, 215);
+            this.card2.Size = new System.Drawing.Size(189, 265);
             this.card2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.card2.TabIndex = 8;
             this.card2.TabStop = false;
@@ -407,9 +428,10 @@ namespace DeckDrawHW1
             // card1
             // 
             this.card1.BackColor = System.Drawing.Color.Transparent;
-            this.card1.Location = new System.Drawing.Point(250, 193);
+            this.card1.Location = new System.Drawing.Point(333, 238);
+            this.card1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.card1.Name = "card1";
-            this.card1.Size = new System.Drawing.Size(142, 215);
+            this.card1.Size = new System.Drawing.Size(189, 265);
             this.card1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.card1.TabIndex = 7;
             this.card1.TabStop = false;
@@ -422,10 +444,11 @@ namespace DeckDrawHW1
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.label1.Font = new System.Drawing.Font("Verdana", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Cornsilk;
-            this.label1.Location = new System.Drawing.Point(331, 0);
+            this.label1.Location = new System.Drawing.Point(441, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Padding = new System.Windows.Forms.Padding(1);
-            this.label1.Size = new System.Drawing.Size(419, 63);
+            this.label1.Size = new System.Drawing.Size(527, 77);
             this.label1.TabIndex = 6;
             this.label1.Text = "The Art Dealer";
             // 
@@ -434,9 +457,10 @@ namespace DeckDrawHW1
             this.StopButton.BackColor = System.Drawing.Color.Red;
             this.StopButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StopButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.StopButton.Location = new System.Drawing.Point(580, 513);
+            this.StopButton.Location = new System.Drawing.Point(773, 631);
+            this.StopButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.StopButton.Name = "StopButton";
-            this.StopButton.Size = new System.Drawing.Size(327, 83);
+            this.StopButton.Size = new System.Drawing.Size(436, 102);
             this.StopButton.TabIndex = 5;
             this.StopButton.Text = "Stop";
             this.StopButton.UseVisualStyleBackColor = false;
@@ -447,9 +471,10 @@ namespace DeckDrawHW1
             this.DrawButton.BackColor = System.Drawing.Color.Green;
             this.DrawButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DrawButton.ForeColor = System.Drawing.Color.White;
-            this.DrawButton.Location = new System.Drawing.Point(145, 513);
+            this.DrawButton.Location = new System.Drawing.Point(193, 631);
+            this.DrawButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DrawButton.Name = "DrawButton";
-            this.DrawButton.Size = new System.Drawing.Size(327, 83);
+            this.DrawButton.Size = new System.Drawing.Size(436, 102);
             this.DrawButton.TabIndex = 0;
             this.DrawButton.Text = "Draw";
             this.DrawButton.UseVisualStyleBackColor = false;
@@ -461,9 +486,10 @@ namespace DeckDrawHW1
             this.SelectButton1.BackColor = System.Drawing.Color.Green;
             this.SelectButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SelectButton1.ForeColor = System.Drawing.Color.White;
-            this.SelectButton1.Location = new System.Drawing.Point(254, 477);
+            this.SelectButton1.Location = new System.Drawing.Point(339, 587);
+            this.SelectButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SelectButton1.Name = "SelectButton1";
-            this.SelectButton1.Size = new System.Drawing.Size(142, 30);
+            this.SelectButton1.Size = new System.Drawing.Size(189, 43);
             this.SelectButton1.TabIndex = 23;
             this.SelectButton1.Text = "Select";
             this.SelectButton1.UseVisualStyleBackColor = false;
@@ -475,9 +501,10 @@ namespace DeckDrawHW1
             this.SelectButton2.BackColor = System.Drawing.Color.Green;
             this.SelectButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SelectButton2.ForeColor = System.Drawing.Color.White;
-            this.SelectButton2.Location = new System.Drawing.Point(402, 477);
+            this.SelectButton2.Location = new System.Drawing.Point(536, 587);
+            this.SelectButton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SelectButton2.Name = "SelectButton2";
-            this.SelectButton2.Size = new System.Drawing.Size(142, 30);
+            this.SelectButton2.Size = new System.Drawing.Size(189, 43);
             this.SelectButton2.TabIndex = 23;
             this.SelectButton2.Text = "Select";
             this.SelectButton2.UseVisualStyleBackColor = false;
@@ -489,9 +516,10 @@ namespace DeckDrawHW1
             this.SelectButton3.BackColor = System.Drawing.Color.Green;
             this.SelectButton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SelectButton3.ForeColor = System.Drawing.Color.White;
-            this.SelectButton3.Location = new System.Drawing.Point(550, 477);
+            this.SelectButton3.Location = new System.Drawing.Point(733, 587);
+            this.SelectButton3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SelectButton3.Name = "SelectButton3";
-            this.SelectButton3.Size = new System.Drawing.Size(142, 30);
+            this.SelectButton3.Size = new System.Drawing.Size(189, 43);
             this.SelectButton3.TabIndex = 23;
             this.SelectButton3.Text = "Select";
             this.SelectButton3.UseVisualStyleBackColor = false;
@@ -503,9 +531,10 @@ namespace DeckDrawHW1
             this.SelectButton4.BackColor = System.Drawing.Color.Green;
             this.SelectButton4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SelectButton4.ForeColor = System.Drawing.Color.White;
-            this.SelectButton4.Location = new System.Drawing.Point(698, 477);
+            this.SelectButton4.Location = new System.Drawing.Point(931, 587);
+            this.SelectButton4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SelectButton4.Name = "SelectButton4";
-            this.SelectButton4.Size = new System.Drawing.Size(142, 30);
+            this.SelectButton4.Size = new System.Drawing.Size(189, 43);
             this.SelectButton4.TabIndex = 23;
             this.SelectButton4.Text = "Select";
             this.SelectButton4.UseVisualStyleBackColor = false;
@@ -514,42 +543,47 @@ namespace DeckDrawHW1
             // labelCard1
             // 
             this.labelCard1.BackColor = System.Drawing.Color.LightGreen;
-            this.labelCard1.Location = new System.Drawing.Point(246, 189);
+            this.labelCard1.Location = new System.Drawing.Point(328, 233);
+            this.labelCard1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCard1.Name = "labelCard1";
-            this.labelCard1.Size = new System.Drawing.Size(150, 223);
+            this.labelCard1.Size = new System.Drawing.Size(200, 274);
             this.labelCard1.TabIndex = 25;
             // 
             // labelCard2
             // 
             this.labelCard2.BackColor = System.Drawing.Color.LightGreen;
-            this.labelCard2.Location = new System.Drawing.Point(397, 189);
+            this.labelCard2.Location = new System.Drawing.Point(529, 233);
+            this.labelCard2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCard2.Name = "labelCard2";
-            this.labelCard2.Size = new System.Drawing.Size(150, 223);
+            this.labelCard2.Size = new System.Drawing.Size(200, 274);
             this.labelCard2.TabIndex = 25;
             // 
             // labelCard3
             // 
             this.labelCard3.BackColor = System.Drawing.Color.LightGreen;
-            this.labelCard3.Location = new System.Drawing.Point(548, 189);
+            this.labelCard3.Location = new System.Drawing.Point(731, 233);
+            this.labelCard3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCard3.Name = "labelCard3";
-            this.labelCard3.Size = new System.Drawing.Size(150, 223);
+            this.labelCard3.Size = new System.Drawing.Size(200, 274);
             this.labelCard3.TabIndex = 25;
             // 
             // labelCard4
             // 
             this.labelCard4.BackColor = System.Drawing.Color.LightGreen;
-            this.labelCard4.Location = new System.Drawing.Point(698, 189);
+            this.labelCard4.Location = new System.Drawing.Point(931, 233);
+            this.labelCard4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCard4.Name = "labelCard4";
-            this.labelCard4.Size = new System.Drawing.Size(150, 223);
+            this.labelCard4.Size = new System.Drawing.Size(200, 274);
             this.labelCard4.TabIndex = 25;
             // 
             // ArtDealer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
-            this.ClientSize = new System.Drawing.Size(1089, 620);
+            this.ClientSize = new System.Drawing.Size(1452, 763);
             this.Controls.Add(this.groupBox1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ArtDealer";
             this.Text = "Art Dealer";
             this.Load += new System.EventHandler(this.ArtDealer_Load);

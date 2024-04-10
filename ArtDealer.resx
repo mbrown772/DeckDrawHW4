@@ -27299,10 +27299,14 @@
   </data>
   <data name="infoBox.Text" xml:space="preserve">
     <value>Information Panel
-
 1. Click the dropdown menus to select cards
 2. Click Draw to confirm card selections
 3. Cards chosen by the Dealer will be Green
+4. You cannot select the same hand twice
+    in the same pattern.
+5. Four green cards in two seperate patterns
+    wins the pattern.
+6. There are six patterns to win.
 4. Click Reset to clear card selections
 5. Click Stop to close the application</value>
   </data>
