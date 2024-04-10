@@ -1,11 +1,11 @@
 ﻿// This Program was developed using C# in Visual Studio 2022
-// Homework 4 Deck Draw Program
+// CS4500: Homework 4 Deck Draw Program
 // Teammates are Nicholas/Brett/James/Jeremy/Matthew
 // Lead Coder: Matthew Brown
-// 4/10/24 CS4500
+// 4/10/24
 // This Program will allow user to select 4 cards, the program will compare them to different patterns.
 // There are 6 patterns and the program goes to the next pattern after two seperate hands where all four cards match the current pattern.
-// Central Data Structure is Lists and the program writes to cardsDealt.txt and LastWon.txt in the DrawData folder.
+// Central Data Structures are Lists and arrays. The program writes to cardsDealt.txt and LastWon.txt in the DrawData folder.
 // This Program used MicroSoft's Tutorial on C# Picture viewer apps,StackOverflow.com,and learn.microsoft.com/en-us/dotnet/api.
 
 /* Credits:
@@ -21,7 +21,6 @@
  * https://stackoverflow.com/questions/13318561/adding-new-line-of-data-to-textbox
  * https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/types/how-to-convert-a-string-to-a-number
  */
-
 
 /* 
  * ==================================
